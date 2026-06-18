@@ -93,19 +93,20 @@ Un **widget flotante** que se inyecta sobre cualquier página web — tu correo,
 ## 🧱 Stack técnico
 
 ```
-┌─────────────────────────────────────────────────┐
+┌───────────────────────────────────────────────────┐
 │  manifest.json          → Config Manifest V3      │
-├─────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  background/worker.js   → Service Worker (JS)     │
+│     · fixture diario desde OpenFootball (fetch)   │
 │     · datos de partidos y grupos                  │
-│     · chrome.alarms cada 60s                       │
-│     · cálculo de minuto real                       │
-├─────────────────────────────────────────────────┤
+│     · chrome.alarms cada 60s                      │
+│     · cálculo de minuto real                      │
+├───────────────────────────────────────────────────┤
 │  content/overlay.js     → Widget inyectado (JS)   │
-│  content/overlay.css    → Estilos del widget       │
-├─────────────────────────────────────────────────┤
-│  popup/popup.html+js    → Popup barra Chrome        │
-└─────────────────────────────────────────────────┘
+│  content/overlay.css    → Estilos del widget      │
+├───────────────────────────────────────────────────┤
+│  popup/popup.html+js    → Popup barra Chrome      │
+└───────────────────────────────────────────────────┘
 ```
 
 **100% JavaScript vanilla.** Sin React, sin build step, sin `node_modules`. Lo que ves en el repo es exactamente lo que carga Chrome.
