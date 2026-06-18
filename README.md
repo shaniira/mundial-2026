@@ -27,7 +27,7 @@ Un **widget flotante** que se inyecta sobre cualquier página web — tu correo,
 <tr>
 <td width="50%">
 
-**🔴 Partido en vivo**
+**🔴 Tabla de Grupos en vivo**
 
 <img src="docs/screenshots/partido-vivo.png" width="380"/>
 
@@ -43,14 +43,14 @@ Un **widget flotante** que se inyecta sobre cualquier página web — tu correo,
 <tr>
 <td width="50%">
 
-**🔵 Próximo partido + Predicción IA**
+**🔵 Fixture del día completo**
 
 <img src="docs/screenshots/partido-proximo.png" width="380"/>
 
 </td>
 <td width="50%">
 
-**📅 Fixture del día completo**
+**📅 Próximo partido + Predicción**
 
 <img src="docs/screenshots/fixture.png" width="380"/>
 
@@ -59,7 +59,7 @@ Un **widget flotante** que se inyecta sobre cualquier página web — tu correo,
 <tr>
 <td width="50%">
 
-**🏆 Tabla de grupos en vivo**
+**🏆 Partido en vivo**
 
 <img src="docs/screenshots/grupos.png" width="380"/>
 
