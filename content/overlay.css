@@ -50,6 +50,7 @@
 /* ── PANEL PRINCIPAL ────────────────────────────────────────── */
 #mw26-panel {
   width: 380px;
+  height: 488px;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 10px;
@@ -58,21 +59,17 @@
   display: flex;
   flex-direction: column;
 
-  /* Estado colapsado por defecto: retraído hacia abajo */
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(16px) scaleY(0.92);
+  /* Estado colapsado por defecto: retraído hacia abajo (escala a 0, no max-height) */
+  transform: scaleY(0) translateY(20px);
   transform-origin: bottom center;
-  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.22s ease,
-              transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
   pointer-events: none;
 }
 
 #mw26-panel.open {
-  max-height: 560px;
+  transform: scaleY(1) translateY(0);
   opacity: 1;
-  transform: translateY(0) scaleY(1);
   pointer-events: auto;
 }
 
@@ -86,7 +83,7 @@
     #f1f5f9;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  height: 100%;
 }
 
 /* ── HEADER — tema césped + trofeo dorado ───────────────────── */
@@ -145,12 +142,11 @@
 .mw-tab.on { color: #4ade80; border-bottom-color: #4ade80; background: rgba(74,222,128,0.04); }
 .mw-tab:hover:not(.on) { color: #6b7280; }
 
-/* ── PANES — altura consistente entre tabs ──────────────────── */
+/* ── PANES — llenan el espacio restante del panel (altura ya fija arriba) ──── */
 .mw-pane { display: none; }
 .mw-pane.on {
   display: block;
-  flex: 0 0 420px;
-  height: 420px;
+  flex: 1;
   overflow-y: auto;
 }
 .mw-pane.on::-webkit-scrollbar { width: 4px; }

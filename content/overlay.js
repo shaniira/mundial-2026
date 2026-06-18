@@ -425,7 +425,7 @@
         return;
       }
       try {
-        chrome.storage.local.get(['cmd', 'cmdTs', 'overlayVisible', 'partidos'], function(d) {
+        chrome.storage.local.get(['cmd', 'cmdTs', 'overlayVisible', 'partidos', 'grupos'], function(d) {
           if (chrome.runtime.lastError) return; // contexto se invalidó justo ahora
           var ov = d.overlayVisible !== false;
           if (ov !== state.overlayVisible) {
@@ -433,10 +433,11 @@
             var root = document.getElementById('mw26-root');
             if (root) root.style.display = ov ? '' : 'none';
           }
-          if (d.partidos && JSON.stringify(d.partidos) !== JSON.stringify(state.partidos)) {
-            state.partidos = d.partidos;
-            rerender();
-          }
+          var partidosCambiaron = d.partidos && JSON.stringify(d.partidos) !== JSON.stringify(state.partidos);
+          var gruposCambiaron = d.grupos && JSON.stringify(d.grupos) !== JSON.stringify(state.grupos);
+          if (partidosCambiaron) state.partidos = d.partidos;
+          if (gruposCambiaron) state.grupos = d.grupos;
+          if (partidosCambiaron || gruposCambiaron) rerender();
           if (d.cmdTs && d.cmdTs !== lastCmdTs) {
             lastCmdTs = d.cmdTs;
             if (d.cmd === 'ABRIR')   { state.expandido = true; state.tabActiva = 'partido'; rerender(); }
@@ -452,7 +453,7 @@
   }
 
   chrome.runtime.onMessage.addListener(function(m) {
-    if (m.tipo === 'TICK') { state.partidos = m.partidos; rerender(); }
+    if (m.tipo === 'TICK') { state.partidos = m.partidos; if (m.grupos) state.grupos = m.grupos; rerender(); }
     if (m.tipo === 'ABRIR_WIDGET')  { state.expandido = true; state.tabActiva = 'partido'; rerender(); }
     if (m.tipo === 'ABRIR_FIXTURE') { state.expandido = true; state.tabActiva = 'fixture'; rerender(); }
   });
